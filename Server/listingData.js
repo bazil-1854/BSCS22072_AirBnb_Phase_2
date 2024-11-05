@@ -300,5 +300,4 @@ const listingsData = [
         category: 'Unique Stays',
     },
 ];
-    
-export default listingsData;
+     
