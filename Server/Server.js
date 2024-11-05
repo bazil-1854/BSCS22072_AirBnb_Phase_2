@@ -9,9 +9,18 @@ app.use(express.json());
 const listingsData = require('./listingData');  
 
 // Data 
-app.get('/api/listings', (req, res) => {
-    console.log(listingsData);
+app.get('/api/listings', (req, res) => { 
     res.json(listingsData);
+});
+
+//Data of a file
+app.get('/api/listings/:id', (req, res) => {
+    const listing = listingsData.find(listing => listing.id === parseInt(req.params.id));
+    if (listing) {
+        res.json(listing);
+    } else {
+        res.status(404).json({ error: 'Listing not found' });
+    }
 });
 
 
