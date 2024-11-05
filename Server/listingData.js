@@ -1,4 +1,4 @@
-const listingsData = [
+const listingData = [
     {
         id: 1,
         title: 'Cozy Beachfront Bungalow',
@@ -300,4 +300,5 @@ const listingsData = [
         category: 'Unique Stays',
     },
 ];
-     
+
+module.exports = listingData;

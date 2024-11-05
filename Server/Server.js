@@ -10,6 +10,7 @@ const listingsData = require('./listingData');
 
 // Data 
 app.get('/api/listings', (req, res) => {
+    console.log(listingsData);
     res.json(listingsData);
 });
 
