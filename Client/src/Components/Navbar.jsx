@@ -3,12 +3,11 @@ import { FaBars, FaHeart, FaSearch, FaSlidersH, FaTimes, FaUser, FaUserCircle } 
 import { AiOutlineSearch } from 'react-icons/ai';
 import { NavLink } from 'react-router-dom';
 import { GiHamburgerMenu } from 'react-icons/gi';
-import SearchBar from './SearchBar';
-import HorizontalScrollList from './HorizontalScrollList';
+import SearchBar from './SearchBar'; 
 import airbnb from "../logo.svg";
 import { LuGlobe } from 'react-icons/lu';
 
-const Navbar = ({ setCategory }) => {
+const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [showSearchBar, setShowSearchBar] = useState(false);
 
@@ -107,8 +106,7 @@ const Navbar = ({ setCategory }) => {
                     )}
 
                     <SearchBar />
-                </div>
-                <HorizontalScrollList setCategory={setCategory} />
+                </div> 
             </nav>
             <nav className='md:hidden block'>
                 <div className="flex items-center pt-[15px] px-[18px] w-screen">
@@ -151,7 +149,6 @@ const Navbar = ({ setCategory }) => {
                         </div>
                     </div>
                 )}
-                <HorizontalScrollList setCategory={setCategory} />
                 <div className="fixed bottom-0 left-0 w-full bg-white shadow-lg flex px-[55px] justify-around py-2"> 
                     <div className="flex flex-col items-center">
                         <FaSearch className="text-red-500 mb-[6px]" size={22} />
@@ -172,3 +169,5 @@ const Navbar = ({ setCategory }) => {
 };
 
 export default Navbar;
+/*
+                <HorizontalScrollList setCategory={setCategory} /> */

@@ -26,7 +26,7 @@ const categories = [
     { name: 'Relaxation', category: 'Relaxation', icon: <FaCoffee className='text-[25px] mb-[5px]' /> },
     { name: 'Culture', category: 'Culture', icon: <FaStar className='text-[25px] mb-[5px]' /> },
     { name: 'Wellness', category: 'Wellness', icon: <FaHeart className='text-[25px] mb-[5px]' /> },
-    { name: 'New', category: 'New   ', icon: <FaSwimmer className='text-[25px] mb-[5px]' /> },
+    { name: 'New', category: 'New', icon: <FaSwimmer className='text-[25px] mb-[5px]' /> },
 ];
 
 const HorizontalScrollList = ({ setCategory }) => {
