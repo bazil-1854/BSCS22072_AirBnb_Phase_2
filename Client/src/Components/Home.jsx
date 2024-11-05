@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { FaSearch, FaStar, FaStarHalfAlt } from 'react-icons/fa';
 import HorizontalScrollList from './HorizontalScrollList';
-import SearchModal from './SearchModal ';
+import SearchModal from './SearchModal';
 
 const Home = () => {
   const [listings, setListings] = useState([]);
