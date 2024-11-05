@@ -9,6 +9,8 @@ const Booking = () => {
 
     const { id } = useParams();
     const [listing, setListing] = useState(null);
+    const [name, setName] = useState('');
+    const [phoneNumber, setPhoneNumber] = useState('');
 
     useEffect(() => {
         const fetchListing = async () => {
@@ -21,6 +23,22 @@ const Booking = () => {
         };
         fetchListing();
     }, [id]);
+
+
+    const handleBooking = async () => {
+        try {
+            const data = {
+                name,
+                phoneNumber,
+                title: listing.title,
+                category: listing.category,
+            };
+            await axios.post(`${process.env.REACT_APP_API_BASE_URL}/api/bookings`, data);
+            alert('Booking information submitted successfully');
+        } catch (error) {
+            console.error('Error submitting booking:', error);
+        }
+    };
 
     return (
         <div className="flex flex-col md:flex-row my-[120px] justify-between max-w-6xl mx-auto p-4 space-y-6 md:space-y-0 md:space-x-6">
@@ -73,24 +91,45 @@ const Booking = () => {
                 <div className="space-y-4">
                     <h3 className="text-lg font-semibold">Log in or sign up to book</h3>
                     <div className="border rounded-lg p-4 space-y-2">
+                        <label className="text-sm text-gray-500">Name</label>
+                        <input
+                            type="text"
+                            placeholder="Enter your name"
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                            className="w-full border rounded-md p-2"
+                        />
+                    </div>
+                    <div className="border rounded-lg p-4 space-y-2">
                         <label className="text-sm text-gray-500">Country code</label>
                         <select className="w-full border rounded-md p-2">
                             <option>Pakistan (+92)</option>
                         </select>
-                        <input type="text" placeholder="Phone number" className="w-full border rounded-md p-2 mt-2" />
+                        <input
+                            type="text"
+                            placeholder="Enter your phone number"
+                            value={phoneNumber}
+                            onChange={(e) => setPhoneNumber(e.target.value)}
+                            className="w-full border rounded-md p-2"
+                        />
                         <p className="text-xs text-gray-500 mt-1">We’ll call or text you to confirm your number. Standard message and data rates apply. <p className="text-blue-500 underline">Privacy Policy</p></p>
                     </div>
-                    <button className="w-full py-3 bg-gradient-to-r from-pink-700 to-pink-900 text-white font-semibold rounded-lg">Continue</button>
+                    <button
+                        onClick={handleBooking}
+                        className="w-full py-3 bg-gradient-to-r from-pink-700 to-pink-900 text-white font-semibold rounded-lg"
+                    >
+                        Continue
+                    </button>
                 </div>
             </div>
 
-            <div className="flex-1 md:max-w-md space-y-4">
+            <div className="flex-1 md:max-w-md space-y-4 ">
 
-                <div className='flex items-center border rounded-lg p-4  bg-white'>
+                <div className='flex items-center border rounded-lg p-4  bg-gray-50'>
                     <img
                         src={listing.image}
                         alt={listing.title}
-                        className="w-[75px] h-[75px] mr-[1] rounded-lg"
+                        className="w-[75px] h-[75px] rounded-lg mr-[15px]"
                     />
                     <div className="space-y-2">
                         <h3 className="text-lg font-semibold">{listing.title}</h3>
