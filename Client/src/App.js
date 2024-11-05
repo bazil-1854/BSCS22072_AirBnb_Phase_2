@@ -4,6 +4,7 @@ import Home from './Components/Home';
 import Footer from './Components/Footer';
 import ListingDetails from './Components/ListingDetails';
 import SearchModal from './Components/SearchModal';
+import Booking from './Components/Booking';
 
 function App() {
 
@@ -15,6 +16,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/search" element={<SearchModal />} />
         <Route path="/listing/:id" element={<ListingDetails />} />
+        <Route path="/booking" element={<Booking />} />
       </Routes>
       <Footer />
     </Router>

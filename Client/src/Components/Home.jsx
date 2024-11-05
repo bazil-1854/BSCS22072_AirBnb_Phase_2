@@ -2,8 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { FaSearch, FaStar, FaStarHalfAlt } from 'react-icons/fa';
-import HorizontalScrollList from './HorizontalScrollList';
-import SearchModal from './SearchModal';
+import HorizontalScrollList from './HorizontalScrollList'; 
 
 const Home = () => {
   const [listings, setListings] = useState([]);
@@ -33,8 +32,7 @@ const Home = () => {
   const filteredListings = selectedCategory
     ? listings.filter(listing => listing.category === selectedCategory)
     : listings;
-
-  const [isModalOpen, setIsModalOpen] = useState(false);
+ 
 
   return (
     <div className='mt-[150px] min-h-screen md:mt-[170px]'>

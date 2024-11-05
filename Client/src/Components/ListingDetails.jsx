@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { FaMedal, FaHome, FaDoorOpen, FaToilet } from 'react-icons/fa';
 
 const ListingDetails = () => {
   const { id } = useParams();
+  const navigate=useNavigate();
   const [listing, setListing] = useState(null);
 
   useEffect(() => {
@@ -19,7 +20,11 @@ const ListingDetails = () => {
     fetchListing();
   }, [id]);
 
-  if (!listing) return <div>Loading...</div>;
+  const handleBooking = () => {
+    navigate('/booking');
+  };
+
+  if (!listing) return <div className="mt-[150px] xl:px-[180px] min-h-screen mx-auto p-6 bg-white">Loading...</div>;
 
   return (
     <div className="mt-[150px] xl:px-[180px] min-h-screen mx-auto p-6 bg-white">
@@ -153,7 +158,7 @@ const ListingDetails = () => {
             </div>
 
 
-            <button className="w-full py-2 bg-gradient-to-r from-pink-600 to-pink-800 text-white font-semibold rounded-lg">
+            <button onClick={() => handleBooking()} className="w-full py-2 bg-gradient-to-r from-pink-600 to-pink-800 text-white font-semibold rounded-lg">
               Reserve
             </button>
 
