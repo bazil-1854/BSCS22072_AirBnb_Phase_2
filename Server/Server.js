@@ -38,6 +38,28 @@ app.get('/api/search', (req, res) => {
 });
 
 
+app.post('/api/bookings', (req, res) => {
+    const { name, phoneNumber, title, category } = req.body;
+    const newBooking = { name, phoneNumber, title, category };
+  
+    const filePath = path.join(__dirname, 'booking.json');
+    fs.readFile(filePath, 'utf8', (err, data) => {
+      let bookings = [];
+      if (!err && data) {
+        bookings = JSON.parse(data);
+      }
+      bookings.push(newBooking);
+  
+      fs.writeFile(filePath, JSON.stringify(bookings, null, 2), (err) => {
+        if (err) {
+          return res.status(500).json({ message: 'Error saving booking data' });
+        }
+        res.status(201).json({ message: 'Booking saved successfully' });
+      });
+    });
+  });
+  
+
 app.listen(PORT, () => {
     console.log(`Server is on http://localhost:${PORT}`);
 });

@@ -5,7 +5,7 @@ import { FaMedal, FaHome, FaDoorOpen, FaToilet } from 'react-icons/fa';
 
 const ListingDetails = () => {
   const { id } = useParams();
-  const navigate=useNavigate();
+  const navigate = useNavigate();
   const [listing, setListing] = useState(null);
 
   useEffect(() => {
@@ -20,8 +20,8 @@ const ListingDetails = () => {
     fetchListing();
   }, [id]);
 
-  const handleBooking = () => {
-    navigate('/booking');
+  const handleBooking = (id) => {
+    navigate(`/booking/${id}`);
   };
 
   if (!listing) return <div className="mt-[150px] xl:px-[180px] min-h-screen mx-auto p-6 bg-white">Loading...</div>;
@@ -158,7 +158,7 @@ const ListingDetails = () => {
             </div>
 
 
-            <button onClick={() => handleBooking()} className="w-full py-2 bg-gradient-to-r from-pink-600 to-pink-800 text-white font-semibold rounded-lg">
+            <button onClick={() => handleBooking(id)} className="w-full py-2 bg-gradient-to-r from-pink-600 to-pink-800 text-white font-semibold rounded-lg">
               Reserve
             </button>
 
