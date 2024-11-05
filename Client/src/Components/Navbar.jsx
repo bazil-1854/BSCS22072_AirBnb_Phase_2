@@ -1,15 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import { FaBars, FaHeart, FaSearch, FaSlidersH, FaTimes, FaUser, FaUserCircle } from 'react-icons/fa';
 import { AiOutlineSearch } from 'react-icons/ai';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import { GiHamburgerMenu } from 'react-icons/gi';
-import SearchBar from './SearchBar'; 
+import SearchBar from './SearchBar';
 import airbnb from "../logo.svg";
 import { LuGlobe } from 'react-icons/lu';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [showSearchBar, setShowSearchBar] = useState(false);
+    const [homePath, sethomePath] = useState(true);
+    const location = useLocation();
+
+    useEffect(() => {
+        if (location.pathname !== '/') {
+            sethomePath(false);
+        }
+    }, [location.pathname]);
 
     const toggleMenu = () => {
         setIsOpen(!isOpen);
@@ -33,7 +41,7 @@ const Navbar = () => {
     return (
         <header className="bg-white fixed w-full top-0 z-50">
             <nav className='md:block hidden'>
-                <div className="border-b-[3px] border-gray-100 mx-auto px-4 sm:px-6 lg:px-[75px]">
+                <div className="border-b-[3px] border-gray-100 mx-auto px-4 sm:px-6 md:px-[15px] lg:px-[35px] xl:px-[75px]">
                     <div className="flex justify-between items-center py-4">
                         <div className="flex items-center">
                             <img src={airbnb} alt="" className='w-[32px] mr-[5px] h-[32px]' />
@@ -42,25 +50,36 @@ const Navbar = () => {
                             </NavLink>
                         </div>
 
-                        {showSearchBar ? (
+
+
+                        {!homePath ?
                             <div className="hidden sm:flex items-cente border-[2px] xl:mr-[-165px] z-90 rounded-full py-2 px-4 shadow-md">
                                 <p className="bg-transparent flex-grow outline-none border-r-[2px] border-gray-200 px-[8px] font-[600] text-gray-700">Anywhere</p>
                                 <p className="bg-transparent flex-grow outline-none border-r-[2px] border-gray-200 px-[8px] font-[600] text-[15px] text-gray-700">Any week</p>
                                 <p className="bg-transparent flex-grow outline-none px-[8px] font-[600] text-[15px] text-gray-500">Any Guests</p>
                                 <AiOutlineSearch className="bg-red-500 text-white rounded-full p-[5.5px] ml-[6px] text-[28px]" />
                             </div>
-                        ) : (
-                            <div className="hidden sm:flex xl:mr-[-165px] bg-white z-90 space-x-6">
-                                <NavLink to="/stays" className="text-gray-600 hover:text-black font-medium">
-                                    Stays
-                                </NavLink>
-                                <NavLink to="/experiences" className="text-gray-600 hover:text-black font-medium">
-                                    Experiences
-                                </NavLink>
-                            </div>
-                        )}
+                            : <>
+                                {showSearchBar ? (
+                                    <div className="hidden sm:flex items-cente border-[2px] xl:mr-[-165px] z-90 rounded-full py-2 px-4 shadow-md">
+                                        <p className="bg-transparent flex-grow outline-none border-r-[2px] border-gray-200 px-[8px] font-[600] text-gray-700">Anywhere</p>
+                                        <p className="bg-transparent flex-grow outline-none border-r-[2px] border-gray-200 px-[8px] font-[600] text-[15px] text-gray-700">Any week</p>
+                                        <p className="bg-transparent flex-grow outline-none px-[8px] font-[600] text-[15px] text-gray-500">Any Guests</p>
+                                        <AiOutlineSearch className="bg-red-500 text-white rounded-full p-[5.5px] ml-[6px] text-[28px]" />
+                                    </div>
+                                ) : (
+                                    <div className="hidden sm:flex xl:mr-[-165px] bg-white z-90 space-x-6">
+                                        <NavLink to="/stays" className="text-gray-600 hover:text-black font-medium">
+                                            Stays
+                                        </NavLink>
+                                        <NavLink to="/experiences" className="text-gray-600 hover:text-black font-medium">
+                                            Experiences
+                                        </NavLink>
+                                    </div>
+                                )}
+                            </>
+                        }
 
-                        {/* Right Side Icons */}
                         <div className="flex items-center space-x-4">
                             <span className='text-gray-700 text-md'>Airbnb Your Home</span>
                             <button className="hidden md:inline-flex items-center text-gray-600 space-x-2 hover:text-black">
@@ -80,8 +99,8 @@ const Navbar = () => {
                     </div>
 
                     {isOpen && (
-                        <div className="sm:hidden">
-                            <div className="flex flex-col bg-white rounded-lg shadow-md mt-2 p-4">
+                        <div className="lg:block hidden">
+                            <div className="flex flex-col absolute z-[90] right-0 mr-[75px] w-[450px] bg-white rounded-lg border shadow-xl mt-2 p-4">
                                 <NavLink to="/" className="block py-2 text-gray-700 hover:bg-gray-100 rounded-lg">
                                     Sign up
                                 </NavLink>
@@ -104,10 +123,10 @@ const Navbar = () => {
                             </div>
                         </div>
                     )}
-
-                    <SearchBar />
-                </div> 
+                    {homePath && <SearchBar />}
+                </div>
             </nav>
+
             <nav className='md:hidden block'>
                 <div className="flex items-center pt-[15px] px-[18px] w-screen">
                     <div className='border-[2px] w-[85%] border-gray-300 rounded-[25px] flex items-center py-[5px] px-3'>
@@ -149,15 +168,15 @@ const Navbar = () => {
                         </div>
                     </div>
                 )}
-                <div className="fixed bottom-0 left-0 w-full bg-white shadow-lg flex px-[55px] justify-around py-2"> 
+                <div className="fixed bottom-0 left-0 w-full bg-white shadow-lg flex px-[55px] justify-around py-2">
                     <div className="flex flex-col items-center">
                         <FaSearch className="text-red-500 mb-[6px]" size={22} />
                         <span className="text-xs text-gray-600">Explore</span>
-                    </div> 
+                    </div>
                     <div className="flex flex-col items-center">
                         <FaHeart className="text-gray-400 mb-[6px]" size={22} />
                         <span className="text-xs text-gray-600">Wishlist</span>
-                    </div> 
+                    </div>
                     <div className="flex flex-col items-center">
                         <FaUser className="text-gray-400 mb-[6px]" size={22} />
                         <span className="text-xs text-gray-600">Login</span>

@@ -27,7 +27,7 @@ const SearchBar = () => {
 
     useEffect(() => {
         const handleScroll = () => {
-            setScrollY(window.scrollY); // Update scrollY state
+            setScrollY(window.scrollY);  
         };
 
         window.addEventListener('scroll', handleScroll);
