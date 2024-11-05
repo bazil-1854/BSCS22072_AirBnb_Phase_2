@@ -3,6 +3,7 @@ import Navbar from './Components/Navbar';
 import Home from './Components/Home';
 import Footer from './Components/Footer';
 import ListingDetails from './Components/ListingDetails';
+import SearchModal from './Components/SearchModal';
 
 function App() {
 
@@ -12,6 +13,7 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/search" element={<SearchModal />} />
         <Route path="/listing/:id" element={<ListingDetails />} />
       </Routes>
       <Footer />

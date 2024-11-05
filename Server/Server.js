@@ -13,6 +13,16 @@ app.get('/api/listings', (req, res) => {
     res.json(listingsData);
 });
 
+// Data for one api
+app.get('/api/listings/:id', (req, res) => {
+    const listing = listingsData.find(listing => listing.id === parseInt(req.params.id));
+    if (listing) {
+        res.json(listing);
+    } else {
+        res.status(404).json({ error: 'Listing not found' });
+    }
+});
+
 //Data of a file
 app.get('/api/search', (req, res) => {
     const { type, title, category } = req.query;

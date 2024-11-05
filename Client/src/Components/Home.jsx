@@ -27,7 +27,9 @@ const Home = () => {
   const handleCardClick = (id) => {
     navigate(`/listing/${id}`);
   };
-
+  const handleSearch = () => {
+    navigate('/search');
+  };
   const filteredListings = selectedCategory
     ? listings.filter(listing => listing.category === selectedCategory)
     : listings;
@@ -39,12 +41,11 @@ const Home = () => {
       <HorizontalScrollList setCategory={setSelectedCategory} />
 
       <button
-        onClick={() => setIsModalOpen(true)}
-        className="bg-blue-500 text-white px-4 py-2 rounded-lg mb-4"
+        onClick={() => handleSearch()}
+        className="bg-gray-200 w-[85vw] flex items-center mx-auto space-x-4 text-gray-600 px-4 py-[8px] text-[18px] rounded-lg mb-4"
       >
-        <FaSearch /> Search Listings
+        <FaSearch className='mr-[15px]' /> Search Listings
       </button>
-      <SearchModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 py-4 xl:px-[75px] px-4">
         {filteredListings.map(listing => (
