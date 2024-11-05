@@ -1,14 +1,19 @@
-import { BrowserRouter as Router } from 'react-router-dom';
+import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import Navbar from './Components/Navbar';
 import Home from './Components/Home';
-import Footer from './Components/Footer'; 
+import Footer from './Components/Footer';
+import ListingDetails from './Components/ListingDetails';
 
-function App() { 
+function App() {
 
   return (
+
     <Router>
-      <Navbar  />
-      <Home />
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/listing/:id" element={<ListingDetails />} />
+      </Routes>
       <Footer />
     </Router>
   );
