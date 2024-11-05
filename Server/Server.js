@@ -25,7 +25,8 @@ app.get('/api/listings/:id', (req, res) => {
 
 // serach query
 app.get('/api/listings/search', (req, res) => {
-    const query = req.query.query.toLowerCase();
+    const query = req.query.toLowerCase();
+    console.log(query);
     const filteredListings = listingsData.filter(
         listing => listing.title.toLowerCase().includes(query) || listing.category.toLowerCase().includes(query)
     );
