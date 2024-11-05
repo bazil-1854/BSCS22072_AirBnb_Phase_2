@@ -23,6 +23,14 @@ app.get('/api/listings/:id', (req, res) => {
     }
 });
 
+// serach query
+app.get('/api/listings/search', (req, res) => {
+    const query = req.query.query.toLowerCase();
+    const filteredListings = listingsData.filter(
+        listing => listing.title.toLowerCase().includes(query) || listing.category.toLowerCase().includes(query)
+    );
+    res.json(filteredListings);
+});
 
 app.listen(PORT, () => {
     console.log(`Server is on http://localhost:${PORT}`);

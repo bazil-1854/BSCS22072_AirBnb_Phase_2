@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { FaStar, FaStarHalfAlt } from 'react-icons/fa';
+import { FaSearch, FaStar, FaStarHalfAlt } from 'react-icons/fa';
 import HorizontalScrollList from './HorizontalScrollList';
+import SearchModal from './SearchModal ';
 
 const Home = () => {
   const [listings, setListings] = useState([]);
@@ -27,13 +28,24 @@ const Home = () => {
     navigate(`/listing/${id}`);
   };
 
-  const filteredListings = selectedCategory 
-    ? listings.filter(listing => listing.category  === selectedCategory) 
+  const filteredListings = selectedCategory
+    ? listings.filter(listing => listing.category === selectedCategory)
     : listings;
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
     <div className='mt-[150px] min-h-screen md:mt-[170px]'>
       <HorizontalScrollList setCategory={setSelectedCategory} />
+
+      <button
+        onClick={() => setIsModalOpen(true)}
+        className="bg-blue-500 text-white px-4 py-2 rounded-lg mb-4"
+      >
+        <FaSearch /> Search Listings
+      </button>
+      <SearchModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 py-4 xl:px-[75px] px-4">
         {filteredListings.map(listing => (
           <div
@@ -41,11 +53,11 @@ const Home = () => {
             onClick={() => handleCardClick(listing.id)}
             className="overflow-hidden cursor-pointer"
           >
-            <img 
-              src={listing.image} 
-              loading='lazy' 
-              alt={listing.title} 
-              className="m-2 h-[290px] w-[95%] border rounded-xl hover:shadow-xl transition duration-200" 
+            <img
+              src={listing.image}
+              loading='lazy'
+              alt={listing.title}
+              className="m-2 h-[290px] w-[95%] border rounded-xl hover:shadow-xl transition duration-200"
             />
             <div className="p-4">
               <h2 className="font-semibold text-lg">{listing.title}</h2>
