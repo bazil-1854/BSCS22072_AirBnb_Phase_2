@@ -34,5 +34,17 @@
     "phoneNumber": "77777777777777777777",
     "title": "Tranquil Beach House",
     "category": "Beachfront"
+  },
+  {
+    "name": "Bazil Suhail",
+    "phoneNumber": "0333333333333333333333",
+    "title": "Trendy Tiny House",
+    "category": "Unique Stays"
+  },
+  {
+    "name": "msodjfn",
+    "phoneNumber": "0222222222222222",
+    "title": "Budget-Friendly Beach Apartment",
+    "category": "Budget"
   }
 ]

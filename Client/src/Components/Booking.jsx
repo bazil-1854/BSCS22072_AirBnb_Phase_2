@@ -24,7 +24,6 @@ const Booking = () => {
         fetchListing();
     }, [id]);
 
-
     const handleBooking = async () => {
         try {
             const data = {
@@ -35,6 +34,8 @@ const Booking = () => {
             };
             await axios.post(`${process.env.REACT_APP_API_BASE_URL}/api/bookings`, data);
             alert('Booking information submitted successfully');
+            setName('');
+            setPhoneNumber('');
         } catch (error) {
             console.error('Error submitting booking:', error);
         }
@@ -106,7 +107,7 @@ const Booking = () => {
                             <option>Pakistan (+92)</option>
                         </select>
                         <input
-                            type="text"
+                            type="number"
                             placeholder="Enter your phone number"
                             value={phoneNumber}
                             onChange={(e) => setPhoneNumber(e.target.value)}
@@ -124,47 +125,50 @@ const Booking = () => {
             </div>
 
             <div className="flex-1 md:max-w-md space-y-4 ">
-
-                <div className='flex items-center border rounded-lg p-4  bg-gray-50'>
-                    <img
-                        src={listing.image}
-                        alt={listing.title}
-                        className="w-[75px] h-[75px] rounded-lg mr-[15px]"
-                    />
-                    <div className="space-y-2">
-                        <h3 className="text-lg font-semibold">{listing.title}</h3>
-                        <div className="flex items-center space-x-2">
-                            <FaStar className="text-yellow-500" />
-                            <p>4.96 (124 reviews) • <FaShieldAlt className="inline" /> {listing.category}</p>
+                {listing && (
+                    <>
+                        <div className='flex items-center border rounded-lg p-4 bg-gray-50'>
+                            <img
+                                src={listing.image}
+                                alt={listing.title}
+                                className="w-[75px] h-[75px] rounded-lg mr-[15px]"
+                            />
+                            <div className="space-y-2">
+                                <h3 className="text-lg font-semibold">{listing.title}</h3>
+                                <div className="flex items-center space-x-2">
+                                    <FaStar className="text-yellow-500" />
+                                    <p>4.96 (124 reviews) • <FaShieldAlt className="inline" /> {listing.category}</p>
+                                </div>
+                                <div className="text-sm text-gray-500">Room in casa particular</div>
+                            </div>
                         </div>
-                        <div className="text-sm text-gray-500">Room in casa particular</div>
-                    </div>
-                </div>
 
-                <div className="border rounded-lg p-4 space-y-2 bg-gray-50">
-                    <h3 className="text-lg font-semibold">Price details</h3>
-                    <div className="flex justify-between">
-                        <p>$125.88 x 9 nights</p>
-                        <p>$1,132.90</p>
-                    </div>
-                    <div className="flex justify-between text-green-600">
-                        <p>Weekly stay discount</p>
-                        <p>-$113.28</p>
-                    </div>
-                    <div className="flex justify-between">
-                        <p>Cleaning fee</p>
-                        <p>$29.16</p>
-                    </div>
-                    <div className="flex justify-between">
-                        <p>Airbnb service fee</p>
-                        <p>$160.03</p>
-                    </div>
-                    <hr />
-                    <div className="flex justify-between font-semibold">
-                        <p>Total (USD)</p>
-                        <p>$1,208.81</p>
-                    </div>
-                </div>
+                        <div className="border rounded-lg p-4 space-y-2 bg-gray-50">
+                            <h3 className="text-lg font-semibold">Price details</h3>
+                            <div className="flex justify-between">
+                                <p>$125.88 x 9 nights</p>
+                                <p>$1,132.90</p>
+                            </div>
+                            <div className="flex justify-between text-green-600">
+                                <p>Weekly stay discount</p>
+                                <p>-$113.28</p>
+                            </div>
+                            <div className="flex justify-between">
+                                <p>Cleaning fee</p>
+                                <p>$29.16</p>
+                            </div>
+                            <div className="flex justify-between">
+                                <p>Airbnb service fee</p>
+                                <p>$160.03</p>
+                            </div>
+                            <hr />
+                            <div className="flex justify-between font-semibold">
+                                <p>Total (USD)</p>
+                                <p>$1,208.81</p>
+                            </div>
+                        </div>
+                    </>
+                )}
             </div>
         </div>
     );
