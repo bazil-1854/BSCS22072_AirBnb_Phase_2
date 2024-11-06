@@ -3,7 +3,7 @@ import axios from 'axios';
 import { FaStar, FaStarHalfAlt } from 'react-icons/fa';
 import { AiOutlineSearch } from 'react-icons/ai';
 
-const SearchModal = () => {
+const SearchListings = () => {
     const [type, setType] = useState('');
     const [title, setTitle] = useState('');
     const [category, setCategory] = useState('');
@@ -123,4 +123,4 @@ const SearchModal = () => {
     );
 };
 
-export default SearchModal;
+export default SearchListings;

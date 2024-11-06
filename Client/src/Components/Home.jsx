@@ -38,9 +38,11 @@ const Home = () => {
   return (
     <div className='mt-[150px] min-h-screen md:mt-[95px]'>
       <SearchBar />
+
       <div className='top-[60px] w-full bg-white sticky'>
         <HorizontalScrollList setCategory={setSelectedCategory} />
       </div>
+
       <div className='w-full xl:px-[75px] px-4'>
         <button
           onClick={() => handleSearch()}
@@ -50,7 +52,7 @@ const Home = () => {
         </button>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 py-4 xl:px-[75px] px-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 py-4 xl:px-[75px] px-4">
         {filteredListings.map(listing => (
           <div
             key={listing.id}

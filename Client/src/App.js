@@ -3,7 +3,7 @@ import Navbar from './Components/Navbar';
 import Home from './Components/Home';
 import Footer from './Components/Footer';
 import ListingDetails from './Components/ListingDetails';
-import SearchModal from './Components/SearchModal';
+import SearchListings from './Components/SearchListings';
 import Booking from './Components/Booking';
 
 function App() {
@@ -14,7 +14,7 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/search" element={<SearchModal />} />
+        <Route path="/search" element={<SearchListings />} />
         <Route path="/listing/:id" element={<ListingDetails />} />
         <Route path="/booking/:id" element={<Booking />} />
       </Routes>
