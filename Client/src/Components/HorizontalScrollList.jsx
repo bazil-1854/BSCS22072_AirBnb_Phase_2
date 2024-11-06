@@ -32,12 +32,12 @@ const categories = [
 const HorizontalScrollList = ({ setCategory }) => {
     return (
         <div className='flex overflow-x-hidden xl:w-[88vw] mx-auto'>
-            <div className="flex overflow-x-auto py-4 no-scrollbar">
+            <div className="flex bg-white overflow-x-auto py-4 no-scrollbar">
                 {categories.map((category, index) => (
                     <button
                         key={index}
                         onClick={() => setCategory(category.category)}
-                        className="bg-white py-2 rounded-xl flex w-[150px] mr-[35px] flex-col justify-center items-center text-sm font-medium text-gray-500 hover:bg-gray-100 transition duration-200"
+                        className="py-2 w-[] rounded-xl flex mr-[35px] flex-col justify-center items-center text-sm font-medium text-gray-500 hover:bg-gray-100 transition duration-200"
                     >
                         {category.icon}
                         <p className="text-gray-700">{category.name}</p>

@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { FaSearch, FaStar, FaStarHalfAlt } from 'react-icons/fa';
 import HorizontalScrollList from './HorizontalScrollList'; 
+import SearchBar from './SearchBar';
 
 const Home = () => {
   const [listings, setListings] = useState([]);
@@ -35,15 +36,19 @@ const Home = () => {
  
 
   return (
-    <div className='mt-[150px] min-h-screen md:mt-[170px]'>
+    <div className='mt-[150px] min-h-screen md:mt-[115px]'>
+      <SearchBar />
+      <div className='top-[75px] sticky'>        
       <HorizontalScrollList setCategory={setSelectedCategory} />
-
+      </div>
+      <div className='w-screen xl:px-[75px] px-4'>
       <button
         onClick={() => handleSearch()}
-        className="bg-gray-200 w-[85vw] flex items-center mx-auto space-x-4 text-gray-600 px-4 py-[8px] text-[18px] rounded-lg mb-4"
+        className="bg-white border border-[351515] w-full flex items-center mx-auto space-x-4 text-gray-600 px-4 py-[12px] text-[18px] rounded-[28px] mb-4"
       >
         <FaSearch className='mr-[15px]' /> Search Listings
       </button>
+      </div>     
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 py-4 xl:px-[75px] px-4">
         {filteredListings.map(listing => (

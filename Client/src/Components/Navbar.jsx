@@ -3,7 +3,6 @@ import { FaBars, FaHeart, FaSearch, FaSlidersH, FaTimes, FaUser, FaUserCircle } 
 import { AiOutlineSearch } from 'react-icons/ai';
 import { NavLink, useLocation } from 'react-router-dom';
 import { GiHamburgerMenu } from 'react-icons/gi';
-import SearchBar from './SearchBar';
 import airbnb from "../logo.svg";
 import { LuGlobe } from 'react-icons/lu';
 
@@ -14,10 +13,9 @@ const Navbar = () => {
     const location = useLocation();
 
     useEffect(() => {
-        if (location.pathname !== '/') {
-            sethomePath(false);
-        }
+        sethomePath(location.pathname === '/');
     }, [location.pathname]);
+    
 
     const toggleMenu = () => {
         setIsOpen(!isOpen);
@@ -122,8 +120,7 @@ const Navbar = () => {
                                 </NavLink>
                             </div>
                         </div>
-                    )}
-                    {homePath && <SearchBar />}
+                    )} 
                 </div>
             </nav>
 
