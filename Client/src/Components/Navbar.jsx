@@ -5,6 +5,7 @@ import { NavLink, useLocation } from 'react-router-dom';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import airbnb from "../logo.svg";
 import { LuGlobe } from 'react-icons/lu';
+import { motion, useScroll, useTransform } from 'framer-motion';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -12,10 +13,14 @@ const Navbar = () => {
     const [homePath, sethomePath] = useState(true);
     const location = useLocation();
 
+    const { scrollY } = useScroll();
+    const opacity = useTransform(scrollY, [0, 150], [1, 0]);
+    const y = useTransform(scrollY, [0, 200], [0, -120]);
+
     useEffect(() => {
         sethomePath(location.pathname === '/');
     }, [location.pathname]);
-    
+
 
     const toggleMenu = () => {
         setIsOpen(!isOpen);
@@ -37,18 +42,16 @@ const Navbar = () => {
     }, []);
 
     return (
-        <header className="bg-white fixed w-full top-0 z-50">
+        <header className="bg-white fixed w-full z-50 top-0">
             <nav className='md:block hidden'>
-                <div className="border-b-[3px] border-gray-100 mx-auto px-4 sm:px-6 md:px-[15px] lg:px-[35px] xl:px-[75px]">
-                    <div className="flex justify-between items-center py-4">
+                <div className={`${location.pathname === '/' ? 'border-white pt-4' : 'border-b-[3px] border-gray-100 py-4'} mx-auto px-4 sm:px-6 md:px-[15px] lg:px-[35px] xl:px-[75px]`}>
+                    <div className="flex justify-between items-center ">
                         <div className="flex items-center">
                             <img src={airbnb} alt="" className='w-[32px] mr-[5px] h-[32px]' />
                             <NavLink to="/" className="text-[24px] font-[780] text-red-500">
                                 airbnb
                             </NavLink>
                         </div>
-
-
 
                         {!homePath ?
                             <div className="hidden sm:flex items-cente border-[2px] xl:mr-[-165px] z-90 rounded-full py-2 px-4 shadow-md">
@@ -59,21 +62,24 @@ const Navbar = () => {
                             </div>
                             : <>
                                 {showSearchBar ? (
-                                    <div className="hidden sm:flex items-cente border-[2px] xl:mr-[-165px] z-90 rounded-full py-2 px-4 shadow-md">
+                                    <div className="hidden sm:flex z-50 items-cente border-[2px] xl:mr-[-165px] z-90 rounded-full py-2 px-4 shadow-md">
                                         <p className="bg-transparent flex-grow outline-none border-r-[2px] border-gray-200 px-[8px] font-[600] text-gray-700">Anywhere</p>
                                         <p className="bg-transparent flex-grow outline-none border-r-[2px] border-gray-200 px-[8px] font-[600] text-[15px] text-gray-700">Any week</p>
                                         <p className="bg-transparent flex-grow outline-none px-[8px] font-[600] text-[15px] text-gray-500">Any Guests</p>
                                         <AiOutlineSearch className="bg-red-500 text-white rounded-full p-[5.5px] ml-[6px] text-[28px]" />
                                     </div>
                                 ) : (
-                                    <div className="hidden sm:flex xl:mr-[-165px] bg-white z-90 space-x-6">
-                                        <NavLink to="/stays" className="text-gray-600 hover:text-black font-medium">
-                                            Stays
-                                        </NavLink>
-                                        <NavLink to="/experiences" className="text-gray-600 hover:text-black font-medium">
-                                            Experiences
-                                        </NavLink>
-                                    </div>
+                                    <motion.div
+                                style={{ opacity, y }}
+                                className="hidden sm:flex xl:mr-[-165px] bg-white z-90 space-x-6"
+                            >
+                                <NavLink to="/stays" className="text-gray-600 hover:text-black font-medium">
+                                    Stays
+                                </NavLink>
+                                <NavLink to="/experiences" className="text-gray-600 hover:text-black font-medium">
+                                    Experiences
+                                </NavLink>
+                            </motion.div>
                                 )}
                             </>
                         }
@@ -120,7 +126,7 @@ const Navbar = () => {
                                 </NavLink>
                             </div>
                         </div>
-                    )} 
+                    )}
                 </div>
             </nav>
 

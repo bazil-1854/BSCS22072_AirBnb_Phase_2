@@ -7,7 +7,7 @@ const ListingCard = ({ listing }) => {
     
     return (
         <div className="overflow-hidden  ">
-            <img src={listing.image} loading='lazy' alt={listing.title} className="m-2 h-[290px] w-[95%] border rounded-xl hover:shadow-xl transition duration-200" />
+            <img src={listing.image} loading='lazy' alt={listing.title} className="m-2 h-[290px] xl:h-[250px] w-[95%] border rounded-xl hover:shadow-xl transition duration-200" />
             <div className="p-4">
                 <h2 className="font-semibold text-lg">{listing.title}</h2>
                 <p className="text-gray-500">{listing.type}</p>
