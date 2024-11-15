@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { FaStar, FaStarHalfAlt } from 'react-icons/fa';
 import { AiOutlineSearch } from 'react-icons/ai';
@@ -8,6 +8,10 @@ const SearchListings = () => {
     const [title, setTitle] = useState('');
     const [category, setCategory] = useState('');
     const [results, setResults] = useState([]);
+
+    useEffect(() => {
+        window.scrollTo(0,0);
+     }, []);
 
     const handleSearch = async (e) => {
         e.preventDefault();

@@ -9,6 +9,10 @@ const ListingDetails = () => {
   const [listing, setListing] = useState(null);
 
   useEffect(() => {
+    window.scrollTo(0,0);
+ }, []);
+
+  useEffect(() => {
     const fetchListing = async () => {
       try {
         const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/listings/${id}`);

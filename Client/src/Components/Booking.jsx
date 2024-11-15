@@ -13,6 +13,10 @@ const Booking = () => {
     const [phoneNumber, setPhoneNumber] = useState('');
 
     useEffect(() => {
+       window.scrollTo(0,0);
+    }, []);
+
+    useEffect(() => {
         const fetchListing = async () => {
             try {
                 const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/listings/${id}`);
@@ -36,7 +40,8 @@ const Booking = () => {
             alert('Booking information submitted successfully');
             setName('');
             setPhoneNumber('');
-        } catch (error) {
+        } 
+        catch (error) {
             console.error('Error submitting booking:', error);
         }
     };

@@ -46,5 +46,11 @@
     "phoneNumber": "0222222222222222",
     "title": "Budget-Friendly Beach Apartment",
     "category": "Budget"
+  },
+  {
+    "name": "",
+    "phoneNumber": "",
+    "title": "Luxury City Apartment",
+    "category": "Luxury"
   }
 ]
