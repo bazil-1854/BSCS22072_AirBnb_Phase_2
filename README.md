@@ -17,8 +17,7 @@ This project is a responsive and interactive React application that replicates t
 - **Footer**: Links to support, community, hosting, and social media.
 
 
-# Setup Instructions
-<hr/>
+# Setup Instructions 
 To run the project locally, follow these steps:
 
 ```bash
@@ -31,7 +30,7 @@ Go to the project directory
    cd my-project
 ```
 
-### Setup for Server 
+***Setup for Server***
 
 ```bash
    cd Server
@@ -47,8 +46,8 @@ In the project directory, run:
    node server
 ``` 
 This will start the Server at PORT **3001**
-### Setup for Client 
 
+***Setup for Client***
 ```bash
    cd Client
 ```
@@ -67,7 +66,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 ## Express Server for Listings and Bookings API
 This application provides API's to manage listings and bookings on static data. The server is built using Express.js and includes endpoints to fetch listings, search for specific data, and save bookings to a JSON file. Following is the list of implemented API endpoints. 
-  - [Get All Listings](#get-all-listings)
-  - [Get Listing by ID](#get-listing-by-id)
-  - [Search Listings](#search-listings)
-  - [Create a Booking](#create-a-booking)
+  - Get All Listings - **get-all-listings**
+  - Get Listing by ID - **get-listing-by-id**
+  - Search Listings - **search-listings**
+  - Create a Booking - **create-a-booking**
