@@ -21,7 +21,7 @@ This project is a responsive and interactive React application that replicates t
 To run the project locally, follow these steps:
 
 ```bash
-   git clone https://github.com/bazil-1854/BSCS22072-Semester-Project.git
+   git clone https://github.com/bazil-1854/BSCS22072_AirBnb_Phase_2.git
 ```
 
 Go to the project directory
